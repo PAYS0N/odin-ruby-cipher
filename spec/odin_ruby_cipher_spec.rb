@@ -11,7 +11,14 @@ describe OdinRubyCipher::Cipher do
       expect(cipher.caesar_cipher(string, 5)).to eq("")
     end
 
-    it "returns correct string when given normal values" do
+    it "returns correct value for only letters" do
+      string = "Hello"
+      shift = 5
+      answer = "Mjqqt"
+      expect(cipher.caesar_cipher(string, shift)).to eq(answer)
+    end
+
+    it "returns correct string when given punctuation" do
       string = "Hello to The Odin Project!"
       shift = 17
       answer = "Yvccf kf Kyv Fuze Gifavtk!"
