@@ -11,10 +11,17 @@ describe OdinRubyCipher::Cipher do
       expect(cipher.caesar_cipher(string, 5)).to eq("")
     end
 
-    it "returns correct string when gives normal values" do
+    it "returns correct string when given normal values" do
       string = "Hello to The Odin Project!"
       shift = 17
       answer = "Yvccf kf Kyv Fuze Gifavtk!"
+      expect(cipher.caesar_cipher(string, shift)).to eq(answer)
+    end
+
+    it "returns correct string when given negative shift" do
+      string = "Hello to The Odin Project!"
+      shift = -5
+      answer = "Czggj oj Ocz Jydi Kmjezxo!"
       expect(cipher.caesar_cipher(string, shift)).to eq(answer)
     end
   end
