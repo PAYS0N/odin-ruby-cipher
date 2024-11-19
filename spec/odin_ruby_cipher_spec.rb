@@ -31,5 +31,12 @@ describe OdinRubyCipher::Cipher do
       answer = "Czggj oj Ocz Jydi Kmjezxo!"
       expect(cipher.caesar_cipher(string, shift)).to eq(answer)
     end
+
+    it "returns correct string when given only punctuation" do
+      string = "45@%35$%*^@#$%$##\\\\#!"
+      shift = -5
+      answer = "45@%35$%*^@#$%$##\\\\#!"
+      expect(cipher.caesar_cipher(string, shift)).to eq(answer)
+    end
   end
 end
