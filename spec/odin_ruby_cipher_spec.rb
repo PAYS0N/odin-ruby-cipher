@@ -2,8 +2,8 @@
 
 require_relative("../lib/cipher")
 
-describe OdinRubyCipher::Cipher do
-  context "when using the cipher" do
+describe OdinRubyCipher::Cipher do # rubocop:disable Metrics/BlockLength
+  context "when using the cipher" do # rubocop:disable Metrics/BlockLength
     subject(:cipher) { described_class.new }
 
     it "returns empty string when not given string" do
@@ -36,6 +36,20 @@ describe OdinRubyCipher::Cipher do
       string = "45@%35$%*^@#$%$##\\\\#!"
       shift = -5
       answer = "45@%35$%*^@#$%$##\\\\#!"
+      expect(cipher.caesar_cipher(string, shift)).to eq(answer)
+    end
+
+    it "returns correct string with high shift" do
+      string = "Hello to The Odin Project!"
+      shift = 125
+      answer = "Czggj oj Ocz Jydi Kmjezxo!"
+      expect(cipher.caesar_cipher(string, shift)).to eq(answer)
+    end
+
+    it "returns correct string with low shift" do
+      string = "Hello to The Odin Project!"
+      shift = -125
+      answer = "Mjqqt yt Ymj Tins Uwtojhy!"
       expect(cipher.caesar_cipher(string, shift)).to eq(answer)
     end
   end
