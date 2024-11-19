@@ -3,9 +3,9 @@
 require_relative("../lib/cipher")
 
 describe OdinRubyCipher::Cipher do # rubocop:disable Metrics/BlockLength
-  context "when using the cipher" do # rubocop:disable Metrics/BlockLength
-    subject(:cipher) { described_class.new }
+  subject(:cipher) { described_class.new }
 
+  context "when using the cipher" do # rubocop:disable Metrics/BlockLength
     it "returns empty string when not given string" do
       string = ""
       expect(cipher.caesar_cipher(string, 5)).to eq("")
@@ -51,6 +51,23 @@ describe OdinRubyCipher::Cipher do # rubocop:disable Metrics/BlockLength
       shift = -125
       answer = "Mjqqt yt Ymj Tins Uwtojhy!"
       expect(cipher.caesar_cipher(string, shift)).to eq(answer)
+    end
+  end
+
+  context "when centering values" do
+    it "returns value already centered" do
+      val = 21
+      expect(cipher.center_value(val, 0, 26)).to eq(21)
+    end
+
+    it "shifts value down" do
+      val = 57
+      expect(cipher.center_value(val, 0, 26)).to eq(val % 26).and be_between(0, 26)
+    end
+
+    it "shifts value up" do
+      val = -123
+      expect(cipher.center_value(val, 0, 26)).to eq(val % 26).and be_between(0, 26)
     end
   end
 end
